@@ -39,8 +39,8 @@ object MultiLanguageManager {
 
     open fun getPrefsLanguage(context: Context): String = RPreference.getInstance(context).getString(KEY_LANGUAGE_TYPE, "");
 
-    open fun setPrefsLanguage(language: String) {
-        RPreference.getInstance(App.mContext!!).put(KEY_LANGUAGE_TYPE, language)
+    open fun setPrefsLanguage(context: Context, language: String) {
+        RPreference.getInstance(context).put(KEY_LANGUAGE_TYPE, language)
     }
 
 
@@ -117,7 +117,6 @@ object MultiLanguageManager {
         configuration.locales = LocaleList(locale)
         return context.createConfigurationContext(configuration)
     }
-
 
 
 }

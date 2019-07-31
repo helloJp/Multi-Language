@@ -35,7 +35,7 @@ class SelectLanguageActivity : BaseActivity() {
         listView.adapter = adapter
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
 
-            MultiLanguageManager.setPrefsLanguage(resources.getStringArray(R.array.pref_language_values)[position])
+            MultiLanguageManager.setPrefsLanguage(this, resources.getStringArray(R.array.pref_language_values)[position])
             setResult(Activity.RESULT_OK)
             finish()
         }
