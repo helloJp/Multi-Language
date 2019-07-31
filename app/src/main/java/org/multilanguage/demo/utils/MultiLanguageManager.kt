@@ -52,7 +52,7 @@ object MultiLanguageManager {
         }
     }
 
-    fun changeAppLanguage(context: Context) {
+    fun updateAppLanguage(context: Context) {
         val resources = context.resources
         val configuration = resources.configuration
 

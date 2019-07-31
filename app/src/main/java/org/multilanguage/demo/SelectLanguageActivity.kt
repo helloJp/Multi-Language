@@ -31,12 +31,10 @@ class SelectLanguageActivity : BaseActivity() {
             list.add(it)
         }
 
-        //为适配器添加数据源
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
-        //为listView的容器添加适配器
         listView.adapter = adapter
-        //设置点击事件mlv
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+
             MultiLanguageManager.setPrefsLanguage(resources.getStringArray(R.array.pref_language_values)[position])
             setResult(Activity.RESULT_OK)
             finish()

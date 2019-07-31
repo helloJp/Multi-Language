@@ -30,7 +30,7 @@ class App : Application() {
         }
         mContext = applicationContext
 
-        onLanguageChange()
+        MultiLanguageManager.updateAppLanguage(mContext!!)
     }
 
     override fun attachBaseContext(base: Context) {
@@ -39,11 +39,7 @@ class App : Application() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        onLanguageChange()
-    }
-
-    private fun onLanguageChange() {
-        MultiLanguageManager.changeAppLanguage(mContext!!)
+        MultiLanguageManager.updateAppLanguage(mContext!!)
     }
 
 }

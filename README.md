@@ -1,9 +1,38 @@
-# LanguagesSwitchKotlin
+# Multi-Language
 
-满足需求：
-1.当前手机默认语言如果包含在国际化中，那么默认打开应用为手机默认语言
-2.如果手机默认语言不在国际化中，那么默认为英文
-3.通过语言列表点击，无缝切换语言，无需重启app
-4.保存当前选择语言，下次进入默认为上一次选择的语言
-5.当本地有选择过语言后，系统语言改变时，不随系统语言变化
-6.适配到8.0
+easy config multi-language, 
+save selected language in sharedPreference
+
+### 1. Application<br>
+
+* override attachBaseContext() & onConfigurationChanged() 
+>  
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(MultiLanguageManager.attachBaseContext(base))
+    }
+
+>
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        MultiLanguageManager.updateAppLanguage(mContext!!)
+    }
+
+
+
+* call updateAppLanguage() in onCreate()
+>
+    override fun onCreate() {
+        super.onCreate()
+        MultiLanguageManager.updateAppLanguage(mContext!!)
+    }
+
+### 2. BaseActivity<br>
+
+* override attachBaseContext() 
+>  
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(MultiLanguageManager.attachBaseContext(base))
+    }
+
+
+    

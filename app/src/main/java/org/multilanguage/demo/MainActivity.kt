@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == MultiLanguageManager.CHANGE_LANGUAGE && resultCode == RESULT_OK) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                MultiLanguageManager.changeAppLanguage(this)
+                MultiLanguageManager.updateAppLanguage(this)
             }
             recreate()
         }
