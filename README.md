@@ -14,7 +14,7 @@ save selected language in sharedPreference
 >
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        MultiLanguageManager.updateAppLanguage(mContext!!)
+        MultiLanguageManager.updateAppLanguage(this)
     }
 
 
@@ -23,7 +23,7 @@ save selected language in sharedPreference
 >
     override fun onCreate() {
         super.onCreate()
-        MultiLanguageManager.updateAppLanguage(mContext!!)
+        MultiLanguageManager.updateAppLanguage(this)
     }
 
 ### 2. BaseActivity<br>

@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Build
 import android.os.LocaleList
 import android.text.TextUtils
-import org.multilanguage.demo.App
 import pyxis.uzuki.live.richutilskt.utils.RPreference
 import java.util.*
 
