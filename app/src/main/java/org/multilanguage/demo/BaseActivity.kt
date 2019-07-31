@@ -1,17 +1,15 @@
-package languages.com.github.lilei.languagesswitch
+package org.multilanguage.demo
 
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import languages.com.github.lilei.languagesswitch.utils.AppLanguageUtils
-import languages.com.github.lilei.languagesswitch.utils.Constants
-import languages.com.github.lilei.languagesswitch.utils.SpUtils
+import org.multilanguage.demo.utils.MultiLanguageManager
 
 /**
- *@Description:
- * @author: lll
- * @date: 2018/8/7
+ * @author jiangp
+ * @date   2019-07-31.
+ * @desc:
  */
 abstract class BaseActivity : FragmentActivity() {
 
@@ -28,8 +26,8 @@ abstract class BaseActivity : FragmentActivity() {
 
     open fun initViewAndData() {}
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(AppLanguageUtils.attachBaseContext(newBase, SpUtils.getString(Constants.LANGUAGE_TYPE, "")!!))
+    override fun attachBaseContext(context: Context) {
+        super.attachBaseContext(MultiLanguageManager.attachBaseContext(context))
     }
 
 }

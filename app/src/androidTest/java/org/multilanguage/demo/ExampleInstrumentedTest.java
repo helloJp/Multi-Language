@@ -1,4 +1,4 @@
-package languages.com.github.lilei.languagesswitch;
+package org.multilanguage.demo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

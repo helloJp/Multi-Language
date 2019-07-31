@@ -1,4 +1,4 @@
-package languages.com.github.lilei.languagesswitch;
+package org.multilanguage.demo;
 
 import org.junit.Test;
 

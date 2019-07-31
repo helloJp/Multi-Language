@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LanguagesSwitch.iml" filepath="$PROJECT_DIR$/LanguagesSwitch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Multi-Language.iml" filepath="$PROJECT_DIR$/.idea/Multi-Language.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

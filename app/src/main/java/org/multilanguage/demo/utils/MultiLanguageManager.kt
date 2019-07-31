@@ -1,29 +1,63 @@
-package languages.com.github.lilei.languagesswitch.utils
+package org.multilanguage.demo.utils
 
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.os.LocaleList
 import android.text.TextUtils
+import org.multilanguage.demo.App
+import pyxis.uzuki.live.richutilskt.utils.RPreference
 import java.util.*
 
-object AppLanguageUtils {
+/**
+ * @author jiangp
+ * @date   2019-07-31.
+ * @desc:
+ */
+object MultiLanguageManager {
+
+    //语言类型
+    const val LANGUAGE_DEFAULT = "en"
+    const val LANGUAGE_EN = "en"
+    const val LANGUAGE_ZH_CN = "zh-CN"
+    const val LANGUAGE_ZH_TW = "zh-TW"
+    const val LANGUAGE_KO = "ko"
+
+
+    const val KEY_LANGUAGE_TYPE = "languageType" //语言类型
+    const val CHANGE_LANGUAGE = 2004
 
     val mAllLanguages = object : LinkedHashMap<String, Locale>(4) {
         init {
-            put(Constants.LANGUAGE_EN, Locale.ENGLISH)
-            put(Constants.LANGUAGE_ZH_CN, Locale.SIMPLIFIED_CHINESE)
-            put(Constants.LANGUAGE_ZH_TW, Locale.TAIWAN)
-            put(Constants.LANGUAGE_KO, Locale.KOREAN)
+            put(LANGUAGE_EN, Locale.ENGLISH)
+            put(LANGUAGE_ZH_CN, Locale.SIMPLIFIED_CHINESE)
+            put(LANGUAGE_ZH_TW, Locale.TAIWAN)
+            put(LANGUAGE_KO, Locale.KOREAN)
         }
     }
 
-    fun changeAppLanguage(context: Context, newLanguage: String) {
+
+    open fun getPrefsLanguage(context: Context): String = RPreference.getInstance(context).getString(KEY_LANGUAGE_TYPE, "");
+
+    open fun setPrefsLanguage(language: String) {
+        RPreference.getInstance(App.mContext!!).put(KEY_LANGUAGE_TYPE, language)
+    }
+
+
+    fun attachBaseContext(context: Context): Context {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            updateResources(context, getPrefsLanguage(context))
+        } else {
+            context
+        }
+    }
+
+    fun changeAppLanguage(context: Context) {
         val resources = context.resources
         val configuration = resources.configuration
 
         // app locale
-        val locale = getLocaleByLanguage(newLanguage)
+        val locale = getLocaleByLanguage(getPrefsLanguage(context))
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             configuration.setLocale(locale)
@@ -41,13 +75,6 @@ object AppLanguageUtils {
         return mAllLanguages.containsKey(language)
     }
 
-    //    public static String getSupportLanguage(String language) {
-    //        if (isSupportLanguage(language)) {
-    //            return language;
-    //        }
-    //
-    //        return ConstantLanguages.LANGUAGE_EN;
-    //    }
 
     /**
      * 获取指定语言的locale信息，如果指定语言不存在[.mAllLanguages]，返回本机语言，如果本机语言不是语言集合中的一种[.mAllLanguages]，返回英语
@@ -55,7 +82,7 @@ object AppLanguageUtils {
      * @param language language
      * @return
      */
-    fun getLocaleByLanguage(language: String): Locale? {
+    private fun getLocaleByLanguage(language: String): Locale? {
         if (isSupportLanguage(language)) {
             return mAllLanguages[language]
         } else {
@@ -76,21 +103,14 @@ object AppLanguageUtils {
                 return key
             }
         }
-        return Constants.LANGUAGE_EN
+        return LANGUAGE_EN
     }
 
-    fun attachBaseContext(context: Context, language: String): Context {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            updateResources(context, language)
-        } else {
-            context
-        }
-    }
 
     @TargetApi(Build.VERSION_CODES.N)
     private fun updateResources(context: Context, language: String): Context {
         val resources = context.resources
-        val locale = AppLanguageUtils.getLocaleByLanguage(language)
+        val locale = getLocaleByLanguage(language)
 
         val configuration = resources.configuration
         configuration.setLocale(locale)
@@ -98,13 +118,6 @@ object AppLanguageUtils {
         return context.createConfigurationContext(configuration)
     }
 
-    //    public static String getSystemLanguage() {
-    //        Locale locale;
-    //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-    //            locale = LocaleList.getDefault().get(0);
-    //        } else {
-    //            locale = Locale.getDefault();
-    //        }
-    //        return locale.getCurrentLanguage();
-    //    }
+
+
 }
