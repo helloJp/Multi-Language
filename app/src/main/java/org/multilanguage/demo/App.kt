@@ -12,24 +12,8 @@ import org.multilanguage.demo.utils.MultiLanguageManager
  */
 class App : Application() {
 
-    companion object {
-        var mInstance: App? = null
-
-        var mContext: Context? = null
-
-        fun getInstance(): App? {
-            return mInstance
-        }
-
-    }
-
     override fun onCreate() {
         super.onCreate()
-        if (mInstance == null) {
-            mInstance = this
-        }
-        mContext = applicationContext
-
         MultiLanguageManager.updateAppLanguage(this)
     }
 

@@ -1,7 +1,10 @@
 # Multi-Language
 
 easy config multi-language, 
-save selected language in sharedPreference
+save selected language in sharedPreference.<br>
+
+if need to change language ,just set 
+>MultiLanguageManager.setPrefsLanguage(this,languageValue)
 
 ### 1. Application<br>
 
